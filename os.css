@@ -49,6 +49,7 @@ img{display:block;max-width:100%}
 .ctl button{width:20px;height:18px;border-radius:3px;color:#fff;line-height:1}
 .ctl button:hover{background:var(--pink);color:var(--ink)}
 .bd{padding:14px 16px;overflow:auto}
+.ft{flex:none;padding:8px 16px;border-top:2px solid var(--ink)}
 .bd h2{font-family:Georgia,serif;font-weight:400;font-size:26px;margin:4px 0 6px}
 .bd p{margin:0 0 10px}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
