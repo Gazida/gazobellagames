@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mmmm Games</title>
+<meta name="description" content="Mmmm Games: dört kişilik bağımsız ekip. PC ve mobil için tuhaf fikirli oyunlar yapıyoruz.">
+<link rel="stylesheet" href="os.css">
+</head>
+<body>
+
+<div id="boot" aria-hidden="true"><div><b>◆ Mmmm OS</b><span id="boot-line">Mmmm… yükleniyor…</span><i><em id="boot-bar"></em></i><small>Geçmek için tıkla</small></div></div>
+
+<header class="bar">
+<button class="brand" data-open="w-about">◆ Mmmm OS</button>
+<nav><button data-open="w-games">Oyunlar</button><button data-open="w-devlog">Devlog</button><button data-open="w-press">Basın</button><button data-open="w-contact">İletişim</button></nav>
+<span id="clock">--:--</span>
+</header>
+
+<main class="desk" id="desk">
+<div class="icons" role="list">
+<button class="ic" role="listitem" data-open="w-hat0"><i style="background:var(--yellow)">H0</i>Hat-0.exe</button>
+<button class="ic" role="listitem" data-open="w-clone"><i style="background:var(--teal)">CR</i>CloneRunner.apk</button>
+<button class="ic" role="listitem" data-open="w-games"><i style="background:var(--lilac)">▦</i>oyunlar/</button>
+<button class="ic" role="listitem" data-open="w-devlog"><i style="background:var(--pink)">≡</i>devlog.txt</button>
+<button class="ic" role="listitem" data-open="w-press"><i style="background:var(--violet)">⇩</i>basin_kiti.zip</button>
+<button class="ic" role="listitem" data-open="w-about"><i style="background:var(--paper)">?</i>hakkimizda.txt</button>
+<button class="ic" role="listitem" data-open="w-contact"><i style="background:var(--teal)">@</i>iletisim.mail</button>
+<button class="ic" role="listitem" data-open="w-locked"><i style="background:var(--dim)">🔒︎</i>gizli_proje/</button>
+<button class="ic" role="listitem" data-open="w-trash"><i style="background:var(--paper)">⌫</i>Çöp kutusu</button>
+</div>
+
+<div class="hello" aria-hidden="true">Merhaba, oyuncu.<small>Bir simgeye çift tıkla.</small></div>
+
+<!-- Hat-0 -->
+<section class="win" id="w-hat0" data-x="160" data-y="40" data-w="500" aria-label="Hat-0">
+<div class="tb"><span>Hat-0.exe — PC</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<div class="poster h0"><span>HAT-0</span><small>son durak: bilinmiyor</small></div>
+<h2>Hat-0</h2>
+<p>Gece hattının şoförüsün. Her durakta bir yolcu biner. Bazıları pek yolcuya benzemiyor. Dikkatli bak; bir şey yanlışsa kapıyı açma.</p>
+<p class="tags"><span>PC</span><span>Anomali bulma</span><span>Unity 3D</span><span class="st">Geliştirmede</span></p>
+<span class="btn" aria-disabled="true">Steam sayfası yakında</span>
+</div></section>
+
+<!-- Clone Runner -->
+<section class="win" id="w-clone" data-x="700" data-y="110" data-w="420" aria-label="Clone Runner">
+<div class="tb"><span>CloneRunner.apk — Android</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<a class="shot" href="img/menu_giris.png" data-lb><img src="img/menu_giris.png" alt="Clone Runner ana menüsü"></a>
+<h2>Clone Runner</h2>
+<p>Zaman Kulesi'nde stajyerin ilk günü. Kırmızı düğmeye dokundun, kule kilitlendi. Her denemen geride bir yankı bırakır: yankın butona basar, kapıdan sen geçersin.</p>
+<p class="tags"><span>Android</span><span>Zamanlama bulmacası</span><span class="st">Beta · V0.4</span></p>
+<div class="gal">
+<a href="img/menu_harita.png" data-lb><img loading="lazy" src="img/menu_harita.png" alt="Kule haritası"></a>
+<a href="img/preview_level4_timeloop.png" data-lb><img loading="lazy" src="img/preview_level4_timeloop.png" alt="Laboratuvar bölümü"></a>
+<a href="img/preview_forest_kit_level10.png" data-lb><img loading="lazy" src="img/preview_forest_kit_level10.png" alt="Orman katı"></a>
+<a href="img/l21_game.png" data-lb><img loading="lazy" src="img/l21_game.png" alt="Mağara katı"></a>
+<a href="img/menu_uzay.png" data-lb><img loading="lazy" src="img/menu_uzay.png" alt="Uzay katı haritası"></a>
+<a href="img/flow_level_complete.png" data-lb><img loading="lazy" src="img/flow_level_complete.png" alt="Bölüm tamamlandı ekranı"></a>
+</div>
+<p class="note">Oynanış videoları yakında.</p>
+</div></section>
+
+<!-- Devlog -->
+<section class="win paper" id="w-devlog" data-x="1060" data-y="40" data-w="320" aria-label="Devlog">
+<div class="tb"><span>devlog.txt</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd mono">
+<p><b>25.10</b> — Clone Runner: Kat 2, orman bölümleri ve platformlar.</p>
+<p><b>23.10</b> — Clone Runner: giriş sinematiği. Stajyer kırmızı düğmeye dokundu.</p>
+<p><b>22.10</b> — Clone Runner: ilk oynanabilir prototip.</p>
+<p><b>20.10</b> — Hat-0: çekirdek döngü. Yolcular binmeye başladı.</p>
+<p><span class="cur">█</span></p>
+</div></section>
+
+<!-- Oyunlar klasörü -->
+<section class="win" id="w-games" data-x="220" data-y="200" data-w="460" hidden aria-label="Oyunlar">
+<div class="tb"><span>oyunlar/</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<div class="filters"><button class="on" data-f="all">Tümü</button><button data-f="pc">PC</button><button data-f="mobile">Mobil</button></div>
+<ul class="list">
+<li data-p="pc"><button data-open="w-hat0"><i style="background:var(--yellow)">H0</i><span><b>Hat-0</b><small>PC · Geliştirmede</small></span></button></li>
+<li data-p="mobile"><button data-open="w-clone"><i style="background:var(--teal)">CR</i><span><b>Clone Runner</b><small>Android · Beta</small></span></button></li>
+<li data-p="pc"><button data-open="w-locked"><i style="background:var(--dim)">?</i><span><b>gizli_proje</b><small>Erişim kısıtlı</small></span></button></li>
+</ul>
+</div></section>
+
+<!-- Basın kiti -->
+<section class="win" id="w-press" data-x="300" data-y="140" data-w="380" hidden aria-label="Basın kiti">
+<div class="tb"><span>basin_kiti.zip</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<p>İçindekiler:</p>
+<ul class="files"><li>logo/ <small>SVG, PNG</small></li><li>ekran_goruntuleri/ <small>her oyun için</small></li><li>bilgi_foyu.pdf</li><li>fragmanlar/</li></ul>
+<span class="btn" aria-disabled="true">İndir (hazırlanıyor)</span>
+<p class="note">Şimdilik basın talepleri için e-posta atın.</p>
+</div></section>
+
+<!-- Hakkımızda -->
+<section class="win paper" id="w-about" data-x="420" data-y="90" data-w="380" hidden aria-label="Hakkımızda">
+<div class="tb"><span>hakkimizda.txt</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<h2>Mmmm Games</h2>
+<p>Dört kişiyiz ve hepimizin adı M ile başlıyor, stüdyonun adı da oradan: dört M, dört "mmm". PC ve mobil için oyun yapıyoruz. Unity ile çalışıyoruz; modelleri Blender'da kendimiz yapıyoruz.</p>
+<p>Sevdiğimiz şey: tek cümleyle anlatılabilen, ama oynadıkça tuhaflaşan fikirler.</p>
+</div></section>
+
+<!-- İletişim -->
+<section class="win" id="w-contact" data-x="500" data-y="180" data-w="360" hidden aria-label="İletişim">
+<div class="tb"><span>iletisim.mail</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<p class="mono">Kime: Mmmm Games<br>Konu: Merhaba!</p>
+<p>Geri bildirim, iş birliği ya da basın için yazın.</p>
+<a class="btn" href="mailto:fourmalgames4@gmail.com">E-posta gönder</a>
+</div></section>
+
+<!-- Gizli proje -->
+<section class="win alert" id="w-locked" data-x="540" data-y="260" data-w="320" hidden aria-label="Erişim reddedildi">
+<div class="tb"><span>gizli_proje/</span><span class="ctl"><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd">
+<p><b>Erişim reddedildi.</b></p>
+<p>Bu klasör henüz kilitli. İpucu: ışıklar yeni bir dünyada yanacak.</p>
+<button class="btn" data-close>Tamam</button>
+</div></section>
+
+<!-- Çöp kutusu -->
+<section class="win paper" id="w-trash" data-x="360" data-y="300" data-w="340" hidden aria-label="Çöp kutusu">
+<div class="tb"><span>Çöp kutusu (4)</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<div class="bd mono">
+<p>✗ kirmizi_dugme_v1 <small>— herkes bastı</small></p>
+<p>✗ sonsuz_koridor <small>— gerçekten sonsuzdu</small></p>
+<p>✗ klon_dans_modu <small>— fazla eğlenceli</small></p>
+<p>✗ otobus_muzigi.mp3 <small>— yolcular şikâyet etti</small></p>
+</div></section>
+</main>
+
+<footer class="dock" id="dock" aria-label="Görev çubuğu"></footer>
+
+<div id="lb" hidden><img alt=""></div>
+<script src="os.js"></script>
+</body>
+</html>
