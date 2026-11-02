@@ -11,7 +11,7 @@ function endBoot(){boot.classList.add('off');setTimeout(function(){boot.remove()
 var seen=false;try{seen=sessionStorage.getItem('gz-boot')==='1';sessionStorage.setItem('gz-boot','1')}catch(e){}
 if(seen||window.matchMedia('(prefers-reduced-motion: reduce)').matches)endBoot();
 else{
-  var lines=['Mmmm… yükleniyor…','Masaüstü hazırlanıyor…','Gece hattı çalıştırılıyor…','Hazır.'],i=0;
+  var lines=['Çekirdek yükleniyor…','Masaüstü hazırlanıyor…','Gece hattı çalıştırılıyor…','Hazır.'],i=0;
   var bar=document.getElementById('boot-bar'),line=document.getElementById('boot-line');
   var tm=setInterval(function(){i++;bar.style.width=(i/lines.length*100)+'%';line.textContent=lines[Math.min(i,lines.length-1)];if(i>=lines.length){clearInterval(tm);setTimeout(endBoot,250)}},380);
   boot.addEventListener('click',function(){clearInterval(tm);endBoot()});

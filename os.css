@@ -113,3 +113,5 @@ img{display:block;max-width:100%}
   .ctl [data-max]{display:none}
 }
 @media (prefers-reduced-motion:reduce){.win{animation:none}.cur{animation:none}}
+.gg{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin-right:6px;vertical-align:-5px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);border-radius:6px;box-shadow:2px 2px 0 var(--ink);font-family:Georgia,serif;font-weight:700;font-size:11px;letter-spacing:-1px;line-height:1}
+#boot .gg{width:44px;height:44px;font-size:20px;border-color:var(--paper);box-shadow:3px 3px 0 var(--paper);margin:0 10px 0 0;vertical-align:-14px}
