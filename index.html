@@ -1,106 +1,200 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" data-theme="night">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gazobella Games</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect x=%274%27 y=%274%27 width=%2756%27 height=%2756%27 rx=%2712%27 fill=%27%23ffcf4a%27 stroke=%27%2316131f%27 stroke-width=%275%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-family=%27Georgia,serif%27 font-weight=%27bold%27 font-size=%2726%27 text-anchor=%27middle%27 fill=%27%2316131f%27%3EGG%3C/text%3E%3C/svg%3E">
-<meta name="description" content="Gazobella Games: PC ve mobil için tuhaf fikirli oyunlar geliştiren bağımsız oyun stüdyosu.">
+<meta name="description" content="Gazobella Games: PC ve mobil için tuhaf fikirli oyunlar geliştiren bağımsız stüdyo. Painting Crew Simulator (PC, Steam Erken Erişim yakında) ve Clone Runner (Android).">
+<meta name="theme-color" content="#1a1036">
+<script>try{if(localStorage.getItem('gz-theme')==='day')document.documentElement.dataset.theme='day'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&amp;display=swap">
 <link rel="stylesheet" href="os.css">
 </head>
 <body>
 
+<!-- İkon seti -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.8V20h13V9.8"/><path d="M10 20v-5.5h4V20"/></symbol>
+<symbol id="i-game" viewBox="0 0 24 24"><path d="M7 7h10a5 5 0 0 1 4.9 6l-.7 3.4a2.4 2.4 0 0 1-4.2 1L15 15H9l-2 2.4a2.4 2.4 0 0 1-4.2-1L2.1 13A5 5 0 0 1 7 7Z"/><path d="M7.5 10v3.5M5.8 11.8h3.5"/><circle cx="16" cy="10.6" r=".6"/><circle cx="17.6" cy="12.8" r=".6"/></symbol>
+<symbol id="i-roller" viewBox="0 0 24 24"><rect x="3" y="3" width="15" height="6" rx="2"/><path d="M18 6h2.5v5.5H11v3"/><rect x="9.5" y="14.5" width="3" height="7" rx="1"/></symbol>
+<symbol id="i-loop" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M14.6 10.2a3 3 0 1 0 .3 2.6"/><path d="M15 8.4v2.2h-2.2"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2.8h8l4.5 4.5V21H6Z"/><path d="M14 2.8v4.5h4.5M9 12h6M9 15.5h6M9 19h3.5"/></symbol>
+<symbol id="i-press" viewBox="0 0 24 24"><path d="M3.5 8.5h17V20h-17Z"/><path d="M3.5 8.5 6 4h12l2.5 4.5"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.7"/><circle cx="12" cy="17" r=".6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 6.5h16M9.5 6.5V4h5v2.5M6 6.5l1 14h10l1-14M10 10.5v6.5M14 10.5v6.5"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.8 2H4.2Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></symbol>
+<symbol id="i-min" viewBox="0 0 24 24"><path d="M6 12.5h12"/></symbol>
+<symbol id="i-max" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5V6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+<symbol id="i-cube" viewBox="0 0 100 100"><path d="M50 4 92 27 50 50 8 27Z" fill="var(--cube-top)"/><path d="M8 27 50 50v46L8 73Z" fill="var(--cube-left)"/><path d="M92 27 50 50v46l42-23Z" fill="var(--cube-right)"/></symbol>
+</defs>
+</svg>
+
 <div id="boot" aria-hidden="true"><div><b><span class="gg">GG</span> Gazobella OS</b><span id="boot-line">Çekirdek yükleniyor…</span><i><em id="boot-bar"></em></i><small>Geçmek için tıkla</small></div></div>
 
-<header class="bar">
-<button class="brand" data-open="w-about"><span class="gg">GG</span> Gazobella OS</button>
-<nav><button data-open="w-games">Oyunlar</button><button data-open="w-devlog">Devlog</button><button data-open="w-press">Basın</button><button data-open="w-contact">İletişim</button></nav>
-<span id="clock">--:--</span>
-</header>
+<h1 class="sr">Gazobella Games</h1>
 
-<main class="desk" id="desk">
-<div class="icons" role="list">
-<button class="ic" role="listitem" data-open="w-hat0"><i style="background:var(--yellow)">H0</i>Hat-0.exe</button>
-<button class="ic" role="listitem" data-open="w-clone"><i style="background:var(--teal)">CR</i>CloneRunner.apk</button>
-<button class="ic" role="listitem" data-open="w-games"><i style="background:var(--lilac)">▦</i>oyunlar/</button>
-<button class="ic" role="listitem" data-open="w-devlog"><i style="background:var(--pink)">≡</i>devlog.txt</button>
-<button class="ic" role="listitem" data-open="w-press"><i style="background:var(--violet)">⇩</i>basin_kiti.zip</button>
-<button class="ic" role="listitem" data-open="w-about"><i style="background:var(--paper)">?</i>hakkimizda.txt</button>
-<button class="ic" role="listitem" data-open="w-contact"><i style="background:var(--teal)">@</i>iletisim.mail</button>
-<button class="ic" role="listitem" data-open="w-locked"><i style="background:var(--dim)">🔒︎</i>gizli_proje/</button>
-<button class="ic" role="listitem" data-open="w-trash"><i style="background:var(--paper)">⌫</i>Çöp kutusu</button>
+<!-- Duvar kâğıdı: parıltılar, küpler, yapraklar, boya tuvali -->
+<div class="wall" aria-hidden="true">
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="glow g4"></div>
+  <div class="cubes">
+    <svg class="cube" style="--x:31%;--y:62%;--s:64px;--d:19s;--r:-12deg"><use href="#i-cube"/></svg>
+    <svg class="cube" style="--x:47%;--y:73%;--s:46px;--d:23s;--r:18deg"><use href="#i-cube"/></svg>
+    <svg class="cube" style="--x:62%;--y:12%;--s:34px;--d:17s;--r:8deg"><use href="#i-cube"/></svg>
+    <svg class="cube" style="--x:79%;--y:47%;--s:72px;--d:26s;--r:14deg"><use href="#i-cube"/></svg>
+    <svg class="cube" style="--x:93%;--y:30%;--s:40px;--d:21s;--r:-20deg"><use href="#i-cube"/></svg>
+    <svg class="cube" style="--x:11%;--y:88%;--s:52px;--d:24s;--r:22deg"><use href="#i-cube"/></svg>
+    <svg class="cube" style="--x:57%;--y:92%;--s:30px;--d:18s;--r:-6deg"><use href="#i-cube"/></svg>
+  </div>
+  <svg class="leaves" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+    <g class="lf1"><path d="M0 900V610c60 10 120 60 150 140 20-90 90-150 170-150-40 60-50 140-20 300Z"/><path d="M90 900c10-120 60-210 150-260-20 90-10 180 30 260Z"/></g>
+    <g class="lf2"><path d="M200 900c30-70 90-120 170-130-40 40-60 90-60 130Z"/><path d="M1600 900V640c-70 0-140 50-170 130-20-60-70-100-130-110 30 70 40 150 20 240Z"/></g>
+  </svg>
+  <canvas id="paint"></canvas>
 </div>
 
-<div class="hello" aria-hidden="true">Merhaba, oyuncu.<small>Bir simgeye çift tıkla.</small></div>
+<!-- Üst çubuk -->
+<header class="bar">
+  <button class="brand" type="button" data-open="w-about" aria-label="Gazobella OS hakkında"><span class="gg">GG</span><span class="brand-name">Gazobella OS</span></button>
+  <div class="search" role="search">
+    <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+    <input id="q" type="search" placeholder="Ara…" autocomplete="off" spellcheck="false" role="combobox" aria-label="Pencere ve oyun ara" aria-autocomplete="list" aria-expanded="false" aria-controls="q-list">
+    <kbd aria-hidden="true">/</kbd>
+    <ul id="q-list" class="pop q-list" role="listbox" aria-label="Arama sonuçları" hidden></ul>
+  </div>
+  <div class="bar-right">
+    <div class="pop-wrap">
+      <button id="bell" class="icon-btn" type="button" aria-label="Bildirimler" aria-expanded="false" aria-controls="notes"><svg class="ico" aria-hidden="true"><use href="#i-bell"/></svg><span class="dot" hidden></span></button>
+      <div id="notes" class="pop notes" hidden>
+        <p class="pop-h">Son haberler</p>
+        <ul id="notes-list"></ul>
+        <button type="button" class="pop-more" data-open="w-devlog">Tüm devlog <svg class="ico" aria-hidden="true"><use href="#i-chev"/></svg></button>
+      </div>
+    </div>
+    <nav class="links" aria-label="Ana menü"><button type="button" data-open="w-games">Oyunlar</button><button type="button" data-open="w-devlog">DevLog</button><button type="button" data-open="w-press">Basın</button><button type="button" data-open="w-contact">İletişim</button></nav>
+    <span id="clock" aria-hidden="true">--:--</span>
+    <button id="roller" class="icon-btn" type="button" aria-label="Masaüstünü boya" aria-pressed="false" title="Masaüstünü boya"><svg class="ico" aria-hidden="true"><use href="#i-roller"/></svg></button>
+    <button id="theme" class="icon-btn moon" type="button" aria-label="Gündüz temasına geç" title="Tema"><svg class="ico i-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ico i-sun" aria-hidden="true"><use href="#i-sun"/></svg></button>
+  </div>
+</header>
 
-<!-- Hat-0 -->
-<section class="win" id="w-hat0" data-x="160" data-y="40" data-w="500" aria-label="Hat-0">
-<div class="tb"><span>Hat-0.exe — PC</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<!-- Boya araç çubuğu (easter egg) -->
+<div id="paintbar" class="paintbar" role="toolbar" aria-label="Boya araçları" hidden>
+  <span class="pb-t">Rulo modu</span>
+  <button type="button" class="sw on" style="--c:#ffcf4a" data-c="#ffcf4a" aria-label="Sarı" aria-pressed="true"></button>
+  <button type="button" class="sw" style="--c:#4fd6c4" data-c="#4fd6c4" aria-label="Turkuaz" aria-pressed="false"></button>
+  <button type="button" class="sw" style="--c:#ff6f9a" data-c="#ff6f9a" aria-label="Pembe" aria-pressed="false"></button>
+  <button type="button" class="sw" style="--c:#ff9f55" data-c="#ff9f55" aria-label="Turuncu" aria-pressed="false"></button>
+  <button type="button" class="sw" style="--c:#2f5fd0" data-c="#2f5fd0" aria-label="Lacivert" aria-pressed="false"></button>
+  <button type="button" id="pb-clear" class="pb-btn">Temizle</button>
+  <button type="button" id="pb-done" class="pb-btn on">Bitti</button>
+</div>
+
+<!-- Sol dock -->
+<nav class="side" id="side" aria-label="Uygulamalar">
+  <button type="button" class="ic home" data-home aria-current="page"><i><svg aria-hidden="true"><use href="#i-home"/></svg></i><span>Ana Sayfa</span></button>
+  <button type="button" class="ic" data-open="w-games" style="--c:var(--violet)"><i><svg aria-hidden="true"><use href="#i-game"/></svg></i><span>Oyunlar</span></button>
+  <button type="button" class="ic" data-open="w-paint" style="--c:var(--orange)"><i><svg aria-hidden="true"><use href="#i-roller"/></svg></i><span>Painting Crew</span></button>
+  <button type="button" class="ic" data-open="w-clone" style="--c:var(--green)"><i><svg aria-hidden="true"><use href="#i-loop"/></svg></i><span>Clone Runner</span></button>
+  <button type="button" class="ic" data-open="w-devlog" style="--c:var(--pink)"><i><svg aria-hidden="true"><use href="#i-doc"/></svg></i><span>Devlog</span></button>
+  <button type="button" class="ic" data-open="w-press" style="--c:var(--blue)"><i><svg aria-hidden="true"><use href="#i-press"/></svg></i><span>Basın kiti</span></button>
+  <button type="button" class="ic" data-open="w-about" style="--c:var(--lilac)"><i><svg aria-hidden="true"><use href="#i-info"/></svg></i><span>Hakkımızda</span></button>
+  <button type="button" class="ic" data-open="w-contact" style="--c:var(--teal)"><i><svg aria-hidden="true"><use href="#i-mail"/></svg></i><span>İletişim</span></button>
+  <button type="button" class="ic" data-open="w-locked" style="--c:var(--slate)"><i><svg aria-hidden="true"><use href="#i-lock"/></svg></i><span>Gizli Proje</span></button>
+  <button type="button" class="ic" data-open="w-trash" style="--c:var(--slate)"><i><svg aria-hidden="true"><use href="#i-trash"/></svg></i><span>Çöp kutusu</span></button>
+</nav>
+
+<main class="desk" id="desk">
+
+<!-- Painting Crew Simulator -->
+<section class="win" id="w-paint" aria-label="Painting Crew Simulator" data-task="PaintingCrew.exe" data-ic="i-roller" style="--c:var(--orange)" data-keys="painting crew simulator boya badana boyaci pc steam simulasyon oyun">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-roller"/></svg></i><span>PaintingCrew.exe — PC</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
-<div class="poster h0"><span>HAT-0</span><small>son durak: bilinmiyor</small></div>
-<h2>Hat-0</h2>
-<p>Gece hattının şoförüsün. Her durakta bir yolcu biner. Bazıları pek yolcuya benzemiyor. Dikkatli bak; bir şey yanlışsa kapıyı açma.</p>
-<p class="tags"><span>PC</span><span>Anomali bulma</span><span>Unity 3D</span><span class="st">Geliştirmede</span></p>
-<span class="btn" aria-disabled="true">Steam sayfası yakında</span>
+<a class="hero" href="img/pcs/hero.jpg" data-lb><img src="img/pcs/hero.jpg" width="1280" height="720" alt="Oyunun ana menüsü: duvarı boyayan boyacı ve menü seçenekleri"></a>
+<h2>Painting Crew Simulator</h2>
+<p>Kendi küçük boya badana dükkânının patronusun. İlan panosundan işi kap, malzemeyi hazırla ve daireyi usulünce yap: naylonla ört, kazı, alçıyı çek, zımparala, fırça ve bantla kenarları kes, ruloyla iki kat at. Temiz iş, dolgun yevmiye; kazandıkça daha iyi aletler, renk makinesinde özel karışımlar ve daha büyük işler seni bekliyor.</p>
+<p class="tags"><span>PC</span><span>Simülasyon</span><span>Birinci şahıs</span><span>Unity 6</span><span class="st">Steam Erken Erişim · yakında</span></p>
+<button type="button" class="cta" disabled><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Steam sayfası yakında</button>
+<div class="gal wide">
+<a href="img/pcs/shot1.jpg" data-lb><img loading="lazy" src="img/pcs/shot1.jpg" width="1280" height="720" alt="Duvardaki pembe sıva yamasını perdahlarken toz parçacıkları"></a>
+<a href="img/pcs/shot2.jpg" data-lb><img loading="lazy" src="img/pcs/shot2.jpg" width="1280" height="720" alt="Boyanmış turkuaz duvarlı oturma odası, merdiven ve boya kovaları"></a>
+<a href="img/pcs/shot3.jpg" data-lb><img loading="lazy" src="img/pcs/shot3.jpg" width="1280" height="720" alt="Boya dükkânının tezgâhı: renk kartelaları, çay bardakları ve tezgâhtar usta"></a>
+<a href="img/pcs/shot4.jpg" data-lb><img loading="lazy" src="img/pcs/shot4.jpg" width="1280" height="720" alt="Mahmut Usta Boya dükkânının sokaktan gündüz görünümü"></a>
+<a href="img/pcs/shot5.jpg" data-lb><img loading="lazy" src="img/pcs/shot5.jpg" width="1280" height="720" alt="Köhne bir odanın duvarını boya rulosuyla turuncuya boyarken oyun içi görüntü"></a>
+</div>
 </div></section>
 
 <!-- Clone Runner -->
-<section class="win" id="w-clone" data-x="700" data-y="110" data-w="420" aria-label="Clone Runner">
-<div class="tb"><span>CloneRunner.apk — Android</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win" id="w-clone" aria-label="Clone Runner" data-task="CloneRunner.apk" data-ic="i-loop" style="--c:var(--green)" data-keys="clone runner klon android mobil zaman kule bulmaca oyun">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-loop"/></svg></i><span>CloneRunner.apk — Android</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
-<a class="shot" href="img/menu_giris.png" data-lb><img src="img/menu_giris.png" alt="Clone Runner ana menüsü"></a>
+<a class="hero shot" href="img/menu_giris.png" data-lb><img src="img/menu_giris.png" width="1440" height="3088" alt="Clone Runner ana menüsü"></a>
 <h2>Clone Runner</h2>
 <p>Zaman Kulesi'nde stajyerin ilk günü. Kırmızı düğmeye dokundun, kule kilitlendi. Her denemen geride bir yankı bırakır: yankın butona basar, kapıdan sen geçersin.</p>
 <p class="tags"><span>Android</span><span>Zamanlama bulmacası</span><span class="st">Beta · V0.4</span></p>
 <div class="gal">
-<a href="img/menu_harita.png" data-lb><img loading="lazy" src="img/menu_harita.png" alt="Kule haritası"></a>
-<a href="img/preview_level4_timeloop.png" data-lb><img loading="lazy" src="img/preview_level4_timeloop.png" alt="Laboratuvar bölümü"></a>
-<a href="img/preview_forest_kit_level10.png" data-lb><img loading="lazy" src="img/preview_forest_kit_level10.png" alt="Orman katı"></a>
-<a href="img/l21_game.png" data-lb><img loading="lazy" src="img/l21_game.png" alt="Mağara katı"></a>
-<a href="img/menu_uzay.png" data-lb><img loading="lazy" src="img/menu_uzay.png" alt="Uzay katı haritası"></a>
-<a href="img/flow_level_complete.png" data-lb><img loading="lazy" src="img/flow_level_complete.png" alt="Bölüm tamamlandı ekranı"></a>
+<a href="img/menu_harita.png" data-lb><img loading="lazy" src="img/menu_harita.png" width="1440" height="3088" alt="Kule haritası"></a>
+<a href="img/preview_level4_timeloop.png" data-lb><img loading="lazy" src="img/preview_level4_timeloop.png" width="540" height="960" alt="Laboratuvar bölümü"></a>
+<a href="img/preview_forest_kit_level10.png" data-lb><img loading="lazy" src="img/preview_forest_kit_level10.png" width="540" height="960" alt="Orman katı"></a>
+<a href="img/l21_game.png" data-lb><img loading="lazy" src="img/l21_game.png" width="540" height="960" alt="Mağara katı"></a>
+<a href="img/menu_uzay.png" data-lb><img loading="lazy" src="img/menu_uzay.png" width="1440" height="3088" alt="Uzay katı haritası"></a>
+<a href="img/flow_level_complete.png" data-lb><img loading="lazy" src="img/flow_level_complete.png" width="1440" height="3088" alt="Bölüm tamamlandı ekranı"></a>
 </div>
 <p class="note">Oynanış videoları yakında.</p>
 </div>
-<div class="ft"><a class="btn" href="privacy-policy.html" target="_blank" rel="noopener">Gizlilik Politikası</a></div>
+<div class="ft"><a class="btn" href="privacy-policy.html" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Gizlilik Politikası</a></div>
 </section>
 
 <!-- Devlog -->
-<section class="win paper" id="w-devlog" data-x="1060" data-y="40" data-w="320" aria-label="Devlog">
-<div class="tb"><span>devlog.txt</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
-<div class="bd mono">
-<p><b>25.10</b> — Clone Runner: Kat 2, orman bölümleri ve platformlar.</p>
-<p><b>23.10</b> — Clone Runner: giriş sinematiği. Stajyer kırmızı düğmeye dokundu.</p>
-<p><b>22.10</b> — Clone Runner: ilk oynanabilir prototip.</p>
-<p><b>20.10</b> — Hat-0: çekirdek döngü. Yolcular binmeye başladı.</p>
-<p><span class="cur">█</span></p>
+<section class="win term" id="w-devlog" aria-label="Devlog" data-task="devlog.txt" data-ic="i-doc" style="--c:var(--pink)" data-keys="devlog gunluk haberler guncelleme notlar">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-doc"/></svg></i><span>devlog.txt</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
+<div class="bd mono log">
+<p data-d="14.11"><b>14.11</b><span>Painting Crew Simulator: fragman kurgusu tamamlandı.</span></p>
+<p data-d="08.11"><b>08.11</b><span>Painting Crew Simulator: usta dükkânı ve şehir haritası.</span></p>
+<p data-d="25.10"><b>25.10</b><span>Clone Runner: Kat 2, orman bölümleri ve platformlar.</span></p>
+<p data-d="23.10"><b>23.10</b><span>Clone Runner: giriş sinematiği. Stajyer kırmızı düğmeye dokundu.</span></p>
+<p data-d="22.10"><b>22.10</b><span>Clone Runner: ilk oynanabilir prototip.</span></p>
+<p class="prompt">&gt; <span class="cur">█</span></p>
 </div></section>
 
 <!-- Oyunlar klasörü -->
-<section class="win" id="w-games" data-x="220" data-y="200" data-w="460" hidden aria-label="Oyunlar">
-<div class="tb"><span>oyunlar/</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win" id="w-games" aria-label="Oyunlarım" data-task="oyunlar/" data-ic="i-game" style="--c:var(--violet)" data-keys="oyunlar oyunlarim liste pc mobil klasor">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-game"/></svg></i><span>Oyunlarım</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
-<div class="filters"><button class="on" data-f="all">Tümü</button><button data-f="pc">PC</button><button data-f="mobile">Mobil</button></div>
+<div class="filters" role="group" aria-label="Platform filtresi"><button type="button" class="on" aria-pressed="true" data-f="all">Tümü</button><button type="button" aria-pressed="false" data-f="pc">PC</button><button type="button" aria-pressed="false" data-f="mobile">Mobil</button></div>
 <ul class="list">
-<li data-p="pc"><button data-open="w-hat0"><i style="background:var(--yellow)">H0</i><span><b>Hat-0</b><small>PC · Geliştirmede</small></span></button></li>
-<li data-p="mobile"><button data-open="w-clone"><i style="background:var(--teal)">CR</i><span><b>Clone Runner</b><small>Android · Beta</small></span></button></li>
-<li data-p="pc"><button data-open="w-locked"><i style="background:var(--dim)">?</i><span><b>gizli_proje</b><small>Erişim kısıtlı</small></span></button></li>
+<li data-p="pc"><button type="button" data-open="w-paint"><i style="--c:var(--orange)">PC</i><span><b>Painting Crew Simulator</b><small>PC · Erken Erişim yakında</small></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button></li>
+<li data-p="mobile"><button type="button" data-open="w-clone"><i style="--c:var(--teal)">CR</i><span><b>Clone Runner</b><small>Android · Beta</small></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button></li>
+<li data-p="pc"><button type="button" data-open="w-locked"><i style="--c:var(--violet)">?</i><span><b>gizli_proje</b><small>Erişim kısıtlı</small></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button></li>
 </ul>
 </div></section>
 
 <!-- Basın kiti -->
-<section class="win" id="w-press" data-x="300" data-y="140" data-w="380" hidden aria-label="Basın kiti">
-<div class="tb"><span>basin_kiti.zip</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win" id="w-press" hidden aria-label="Basın kiti" data-task="basin_kiti.zip" data-ic="i-press" style="--c:var(--blue)" data-keys="basin kiti press kit logo ekran goruntusu bilgi">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-press"/></svg></i><span>basin_kiti.zip</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
 <p>İçindekiler:</p>
 <ul class="files"><li>logo/ <small>SVG, PNG</small></li><li>ekran_goruntuleri/ <small>her oyun için</small></li><li>bilgi_foyu.pdf</li><li>fragmanlar/</li></ul>
-<span class="btn" aria-disabled="true">İndir (hazırlanıyor)</span>
+<button type="button" class="cta small" disabled>İndir (hazırlanıyor)</button>
 <p class="note">Şimdilik basın talepleri için e-posta atın.</p>
 </div></section>
 
 <!-- Hakkımızda -->
-<section class="win paper" id="w-about" data-x="420" data-y="90" data-w="380" hidden aria-label="Hakkımızda">
-<div class="tb"><span>hakkimizda.txt</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win" id="w-about" hidden aria-label="Hakkımızda" data-task="hakkimizda.txt" data-ic="i-info" style="--c:var(--lilac)" data-keys="hakkimizda studyo gazobella games unity blender">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-info"/></svg></i><span>hakkimizda.txt</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
 <h2>Gazobella Games</h2>
 <p>Gazobella Games, PC ve mobil için oyunlar geliştiren bağımsız bir stüdyo. Oyunlar Unity ile geliştiriliyor, modeller Blender'da hazırlanıyor.</p>
@@ -108,37 +202,80 @@
 </div></section>
 
 <!-- İletişim -->
-<section class="win" id="w-contact" data-x="500" data-y="180" data-w="360" hidden aria-label="İletişim">
-<div class="tb"><span>iletisim.mail</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win" id="w-contact" hidden aria-label="İletişim" data-task="iletisim.mail" data-ic="i-mail" style="--c:var(--teal)" data-keys="iletisim e-posta mail iletisim basin is birligi geri bildirim">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-mail"/></svg></i><span>iletisim.mail</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
-<p class="mono">Kime: Gazobella Games<br>Konu: Merhaba!</p>
+<p class="mono mailhead">Kime: Gazobella Games<br>Konu: Merhaba!</p>
 <p>Geri bildirim, iş birliği ya da basın için yazın.</p>
-<a class="btn" href="mailto:fourmalgames4@gmail.com">E-posta gönder</a>
+<a class="cta small" href="mailto:fourmalgames4@gmail.com"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>E-posta gönder</a>
 </div></section>
 
 <!-- Gizli proje -->
-<section class="win alert" id="w-locked" data-x="540" data-y="260" data-w="320" hidden aria-label="Erişim reddedildi">
-<div class="tb"><span>gizli_proje/</span><span class="ctl"><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win alert" id="w-locked" hidden aria-label="Erişim reddedildi" data-task="gizli_proje/" data-ic="i-lock" style="--c:var(--slate)" data-keys="gizli proje kilitli yeni dunya">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-lock"/></svg></i><span>gizli_proje/</span></span><span class="ctl"><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd">
 <p><b>Erişim reddedildi.</b></p>
 <p>Bu klasör henüz kilitli. İpucu: ışıklar yeni bir dünyada yanacak.</p>
-<button class="btn" data-close>Tamam</button>
+<button type="button" class="cta small" data-close>Tamam</button>
 </div></section>
 
 <!-- Çöp kutusu -->
-<section class="win paper" id="w-trash" data-x="360" data-y="300" data-w="340" hidden aria-label="Çöp kutusu">
-<div class="tb"><span>Çöp kutusu (4)</span><span class="ctl"><button data-min aria-label="Küçült">_</button><button data-max aria-label="Büyüt">□</button><button data-close aria-label="Kapat">×</button></span></div>
+<section class="win term" id="w-trash" hidden aria-label="Çöp kutusu" data-task="Çöp kutusu" data-ic="i-trash" style="--c:var(--slate)" data-keys="cop kutusu silinenler trash">
+<div class="tb"><span class="tt"><i class="wic"><svg aria-hidden="true"><use href="#i-trash"/></svg></i><span>Çöp kutusu (3)</span></span><span class="ctl"><button type="button" data-min aria-label="Küçült"><svg aria-hidden="true"><use href="#i-min"/></svg></button><button type="button" data-max aria-label="Büyüt"><svg aria-hidden="true"><use href="#i-max"/></svg></button><button type="button" data-close aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
 <div class="bd mono">
 <p>✗ kirmizi_dugme_v1 <small>— herkes bastı</small></p>
 <p>✗ sonsuz_koridor <small>— gerçekten sonsuzdu</small></p>
 <p>✗ klon_dans_modu <small>— fazla eğlenceli</small></p>
-<p>✗ otobus_muzigi.mp3 <small>— yolcular şikâyet etti</small></p>
 </div></section>
 </main>
 
+<!-- Maskot: retro monitör, masa ve selam -->
+<div class="mascot" id="mascot">
+  <p class="bubble" id="bubble" aria-live="polite"></p>
+  <button type="button" class="mon-btn" id="mon" aria-label="Monitöre dokun: yüzünü değiştir">
+  <svg class="scene" viewBox="0 0 340 250" aria-hidden="true">
+    <defs>
+      <linearGradient id="m-body" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--mon-a)"/><stop offset="1" stop-color="var(--mon-b)"/></linearGradient>
+      <radialGradient id="m-screen" cx=".5" cy=".5" r=".7"><stop offset="0" stop-color="#4a2a12"/><stop offset="1" stop-color="#1c0f08"/></radialGradient>
+      <linearGradient id="m-desk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--desk-a)"/><stop offset="1" stop-color="var(--desk-b)"/></linearGradient>
+      <filter id="m-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <ellipse cx="200" cy="168" rx="120" ry="70" fill="#ffb84a" opacity=".16"/>
+    <!-- masa -->
+    <path d="M0 176h340v74H0Z" fill="url(#m-desk)"/>
+    <path d="M0 176h340v5H0Z" fill="var(--desk-edge)"/>
+    <!-- kitaplar ve kupa -->
+    <rect x="34" y="160" width="74" height="16" rx="3" fill="#5d3fb0"/>
+    <rect x="40" y="147" width="64" height="13" rx="3" fill="#3f2b85"/>
+    <rect x="44" y="149" width="56" height="2" fill="#8f73ee" opacity=".6"/>
+    <g transform="translate(52 112)"><path d="M0 4h28v27a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5Z" fill="#cfc6ea"/><path d="M28 10h4a6 6 0 0 1 0 12h-4" fill="none" stroke="#cfc6ea" stroke-width="4"/><ellipse cx="14" cy="4" rx="14" ry="3" fill="#8f86b0"/><text x="14" y="25" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="11" fill="#2a1f45">GG</text><path class="steam" d="M9-4c-3-5 3-7 0-12M18-4c-3-5 3-7 0-12" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/></g>
+    <!-- monitör -->
+    <path d="M176 176l8-16h52l8 16Z" fill="var(--mon-b)"/>
+    <rect x="128" y="20" width="184" height="146" rx="26" fill="url(#m-body)"/>
+    <rect x="128" y="20" width="184" height="146" rx="26" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>
+    <rect x="144" y="34" width="152" height="114" rx="18" fill="#140b24"/>
+    <rect x="152" y="41" width="136" height="100" rx="14" fill="url(#m-screen)"/>
+    <rect class="screen-glow" x="152" y="41" width="136" height="100" rx="14" fill="#ffcf4a" opacity=".07"/>
+    <g id="face" filter="url(#m-glow)" fill="#ffd54a" transform="translate(175 56)"></g>
+    <path d="M160 48c20-6 50-7 74-4" stroke="#fff" stroke-opacity=".12" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="292" cy="156" r="3.2" fill="#6ff0a0"/>
+    <path d="M300 60v40M306 64v32" stroke="#000" stroke-opacity=".22" stroke-width="3" stroke-linecap="round"/>
+    <path d="M312 140c18 4 22 20 28 36" stroke="#1b1233" stroke-width="4" fill="none"/>
+  </svg>
+  </button>
+  <p class="hello" aria-hidden="true"><span>selam, oyuncu.</span>
+    <svg class="uline" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M4 16C60 8 140 6 210 9c34 1.5 60 4 86 8" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/><path d="M120 19c50-3 100-3 150 1" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" opacity=".6"/></svg>
+  </p>
+</div>
+
 <footer class="dock" id="dock" aria-label="Görev çubuğu"></footer>
 
-<div id="lb" hidden><img alt=""></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Görsel önizleme" hidden>
+  <figure><img alt=""><figcaption><span id="lb-cap"></span><span id="lb-n"></span></figcaption></figure>
+  <button type="button" class="lb-btn lb-prev" aria-label="Önceki görsel"><svg aria-hidden="true"><use href="#i-back"/></svg></button>
+  <button type="button" class="lb-btn lb-next" aria-label="Sonraki görsel"><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+  <button type="button" class="lb-btn lb-close" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+</div>
 <script src="os.js"></script>
 </body>
 </html>
