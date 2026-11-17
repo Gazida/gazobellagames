@@ -98,9 +98,19 @@ function setBox(w, x, y, width, maxH) {
   w.style.left = Math.round(x) + 'px'; w.style.top = Math.round(y) + 'px';
   w.style.width = Math.round(width) + 'px'; w.style.maxHeight = Math.round(Math.max(160, maxH)) + 'px';
 }
+// Dar masaüstünde (W<1000) devlog görev çubuğuna küçültülür; üst üste binmesin. Eşik geçişinde bir kez uygulanır.
+let wasNarrow = null;
+function fitDefaults(W) {
+  const narrow = W < 1000, dl = $('#w-devlog');
+  if (narrow === wasNarrow) return;
+  wasNarrow = narrow;
+  if (narrow && !dl.hidden && !dl.dataset.moved && !dl.classList.contains('max')) { dl.hidden = true; dl.classList.add('minimized', 'auto'); dl.classList.remove('active'); sync(); }
+  else if (!narrow && dl.classList.contains('auto') && dl.classList.contains('minimized')) { dl.hidden = false; dl.classList.remove('minimized'); dl.classList.remove('auto'); sync(); }
+}
 function layout() {
   if (mobile.matches) return;
   const W = desk.clientWidth, H = desk.clientHeight, g = 14;
+  fitDefaults(W);
   const d = desk.getBoundingClientRect(), m = mascot.getBoundingClientRect();
   const mL = Math.min(W, m.left - d.left), mT = Math.min(H, m.top - d.top);
   const box = {};
@@ -144,7 +154,7 @@ function activate(w) {
 }
 function open(id, opts = {}) {
   const w = document.getElementById(id); if (!w) return;
-  w.hidden = false; w.classList.remove('minimized');
+  w.hidden = false; w.classList.remove('minimized', 'auto');
   activate(w);
   if (mobile.matches) w.scrollIntoView({ behavior: calm.matches ? 'auto' : 'smooth', block: 'start' });
   if (opts.focus) w.focus({ preventScroll: true });
@@ -161,8 +171,8 @@ function home() {
     delete w.dataset.moved; w.classList.remove('max', 'minimized');
     w.hidden = !DEFAULT_OPEN.includes(w.id);
   });
-  layout();
-  DEFAULT_OPEN.slice().reverse().forEach(id => activate(document.getElementById(id)));
+  wasNarrow = null; layout();
+  DEFAULT_OPEN.slice().reverse().map(id => document.getElementById(id)).filter(w => !w.hidden).forEach(activate);
   if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
   if (mobile.matches) scrollTo({ top: 0, behavior: calm.matches ? 'auto' : 'smooth' });
 }
