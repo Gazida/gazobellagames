@@ -47,6 +47,9 @@ svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-l
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:10px}
 [hidden]{display:none!important}
+/* EN seçiliyken çeviri uygulanana dek gizle (JS çalışmazsa 1.5 sn sonra yine görünür) */
+html.l10n-wait body{visibility:hidden;animation:l10n-show 0s 1.5s forwards!important}
+@keyframes l10n-show{to{visibility:visible}}
 
 /* ---------- açılış ---------- */
 #boot{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 40%,#2a1858,#0d0820 70%);color:#f4f0ff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .35s}
@@ -98,6 +101,10 @@ body.painting #paint{pointer-events:auto;cursor:crosshair}
 :root[data-theme="day"] #theme .i-moon{display:none}
 #theme .i-moon{fill:var(--lilac);stroke:var(--lilac)}
 #roller[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.lang{display:flex;align-items:center;gap:2px;padding:3px;margin-left:2px;border-radius:99px;background:var(--glass-hi2);border:1px solid var(--line);flex:none}
+.lang button{min-width:32px;height:30px;padding:0 7px;border-radius:99px;font:700 11.5px/1 ui-monospace,Consolas,monospace;letter-spacing:.04em;color:var(--muted);transition:background .15s,color .15s}
+.lang button:hover{color:var(--text)}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 .links{display:flex;align-items:center;margin:0 6px}
 .links button{padding:6px 12px;font-weight:500;border-radius:10px;position:relative}
 .links button+button::before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:1px;background:var(--line-strong)}
@@ -201,6 +208,7 @@ body.painting #paint{pointer-events:auto;cursor:crosshair}
 .missing{display:flex;align-items:center;justify-content:center}
 .missing img{visibility:hidden;position:absolute}
 .missing::after{content:"görsel yakında";font:600 12px ui-monospace,Consolas,monospace;color:#cbbcf5;opacity:.8}
+:root[lang="en"] .missing::after{content:"image coming soon"}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px!important}
 .tags span{font-size:12px;font-weight:500;padding:4px 11px;border-radius:99px;background:var(--glass-hi);border:1px solid var(--line);color:var(--text)}
 .tags .st{background:rgba(255,207,74,.14);border-color:rgba(255,207,74,.55);color:var(--accent);font-weight:600}

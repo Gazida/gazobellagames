@@ -14,6 +14,47 @@ const wins = $$('.win');
 const DEFAULT_OPEN = ['w-paint', 'w-clone', 'w-devlog', 'w-games'];
 let z = 10;
 
+/* ---------- Dil (TR varsayılan HTML; EN sözlükten) ---------- */
+// Dil seçimi <head> içindeki satır içi betikte yapılır (?lang=, kayıtlı tercih, tarayıcı dili).
+const I18N = window.GZ_I18N || { tr: {}, en: {} };
+const root = document.documentElement;
+let lang = root.lang === 'en' ? 'en' : 'tr';
+const t = k => { const d = I18N[lang] || {}; return k in d ? d[k] : (I18N.tr || {})[k]; };
+const orig = new WeakMap(); // öğe -> özgün Türkçe metin/öznitelikler
+const attrPairs = el => (el.dataset.i18nAttr || '').split(',').map(p => p.split(':').map(s => s.trim())).filter(p => p[0] && p[1]);
+function translateDom() {
+  const dict = lang === 'tr' ? {} : (I18N[lang] || {});
+  const pick = (k, fallback) => (k in dict ? dict[k] : fallback);
+  $$('[data-i18n],[data-i18n-html],[data-i18n-attr]').forEach(el => {
+    let o = orig.get(el);
+    if (!o) {
+      o = { text: el.textContent, html: el.innerHTML, attrs: {} };
+      attrPairs(el).forEach(([a]) => { o.attrs[a] = el.getAttribute(a); });
+      orig.set(el, o);
+    }
+    if (el.dataset.i18n) el.textContent = pick(el.dataset.i18n, o.text);
+    else if (el.dataset.i18nHtml) el.innerHTML = pick(el.dataset.i18nHtml, o.html);
+    attrPairs(el).forEach(([a, k]) => { const v = pick(k, o.attrs[a]); if (v != null) el.setAttribute(a, v); });
+  });
+}
+function labelControls() {
+  $$('.win').forEach(w => {
+    const mn = $('.ctl [data-min]', w), mx = $('.ctl [data-max]', w), cl = $('.ctl [data-close]', w);
+    if (mn) mn.setAttribute('aria-label', t('win.min'));
+    if (mx) mx.setAttribute('aria-label', t(w.classList.contains('max') ? 'win.restore' : 'win.max'));
+    if (cl) cl.setAttribute('aria-label', t('win.close'));
+  });
+}
+function applyLangStatic() {
+  root.lang = lang;
+  translateDom(); labelControls();
+  document.title = t('meta.title');
+  const md = $('meta[name="description"]'); if (md) md.content = t('meta.desc');
+  $$('.lang [data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  root.classList.remove('l10n-wait');
+}
+applyLangStatic();
+
 /* ---------- Açılış ekranı: oturum başına bir kez ---------- */
 const boot = $('#boot');
 function endBoot() { boot.classList.add('off'); setTimeout(() => boot.remove(), 400); greet(); }
@@ -21,7 +62,7 @@ let seen = false;
 try { seen = sessionStorage.getItem('gz-boot') === '1'; sessionStorage.setItem('gz-boot', '1'); } catch (e) {}
 if (seen || calm.matches) endBoot();
 else {
-  const lines = ['Çekirdek yükleniyor…', 'Masaüstü hazırlanıyor…', 'Rulolar boyaya batırılıyor…', 'Hazır.'];
+  const lines = t('boot');
   const bar = $('#boot-bar'), line = $('#boot-line');
   let i = 0;
   const tm = setInterval(() => {
@@ -39,14 +80,14 @@ tick(); setInterval(tick, 15000);
 
 /* ---------- Tema (gece / gündüz) ---------- */
 const themeBtn = $('#theme');
-function applyTheme(t) {
-  document.documentElement.dataset.theme = t;
-  themeBtn.setAttribute('aria-label', t === 'day' ? 'Gece temasına geç' : 'Gündüz temasına geç');
-  const m = $('meta[name="theme-color"]'); if (m) m.content = t === 'day' ? '#efe9ff' : '#1a1036';
+function applyTheme(th) {
+  document.documentElement.dataset.theme = th;
+  themeBtn.setAttribute('aria-label', t(th === 'day' ? 'theme.toNight' : 'theme.toDay'));
+  const m = $('meta[name="theme-color"]'); if (m) m.content = th === 'day' ? '#efe9ff' : '#1a1036';
 }
 function toggleTheme() {
-  const t = document.documentElement.dataset.theme === 'day' ? 'night' : 'day';
-  applyTheme(t); store.set('gz-theme', t);
+  const th = document.documentElement.dataset.theme === 'day' ? 'night' : 'day';
+  applyTheme(th); store.set('gz-theme', th);
 }
 applyTheme(document.documentElement.dataset.theme === 'day' ? 'day' : 'night');
 themeBtn.addEventListener('click', toggleTheme);
@@ -137,7 +178,7 @@ function sync() {
     b.lastChild.textContent = titleOf(w);
     const on = w.classList.contains('active') && !w.hidden;
     if (on) b.className = 'on';
-    if (w.classList.contains('minimized')) { b.className = 'min'; b.title = 'Küçültüldü'; }
+    if (w.classList.contains('minimized')) { b.className = 'min'; b.title = t('dock.min'); }
     b.setAttribute('aria-pressed', on ? 'true' : 'false');
     b.addEventListener('click', () => { if (!w.hidden && w.classList.contains('active')) minimize(w); else open(w.id, { noHash: true }); });
     dock.appendChild(b);
@@ -165,7 +206,7 @@ wins.forEach(w => {
   const mx = $('[data-max]', w);
   const toggleMax = () => {
     const on = w.classList.toggle('max');
-    if (mx) mx.setAttribute('aria-label', on ? 'Önceki boyut' : 'Büyüt');
+    if (mx) mx.setAttribute('aria-label', t(on ? 'win.restore' : 'win.max'));
   };
   if (mx) mx.addEventListener('click', e => { e.stopPropagation(); toggleMax(); });
   const tb = $('.tb', w);
@@ -233,15 +274,21 @@ lb.addEventListener('keydown', e => { // odak tuzağı
 /* ---------- Arama ---------- */
 const q = $('#q'), qList = $('#q-list');
 const norm = s => s.toLocaleLowerCase('tr').replace(/[ıİ]/g, 'i').replace(/ş/g, 's').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/[âî]/g, m => m === 'â' ? 'a' : 'i');
-const entries = wins.map(w => ({
-  title: w.getAttribute('aria-label'), sub: titleOf(w), ic: w.dataset.ic, c: w.style.getPropertyValue('--c'),
-  keys: norm(w.getAttribute('aria-label') + ' ' + titleOf(w) + ' ' + (w.dataset.keys || '')),
-  run: () => open(w.id, { focus: true })
-})).concat([
-  { title: 'Gece / gündüz teması', sub: 'Komut', ic: 'i-sun', c: 'var(--accent)', keys: 'tema gece gunduz karanlik aydinlik theme', run: toggleTheme },
-  { title: 'Masaüstünü boya', sub: 'Komut · rulo modu', ic: 'i-roller', c: 'var(--accent)', keys: 'boya rulo ciz paint duvar', run: () => setPaint(true) },
-  { title: 'Ana sayfa düzeni', sub: 'Komut · pencereleri sıfırla', ic: 'i-home', c: 'var(--accent)', keys: 'ana sayfa duzen sifirla home', run: home }
-]);
+let entries = [];
+function buildEntries() { // etkin dilde aranır
+  const cmd = (k, ic, run) => ({ title: t('cmd.' + k), sub: t('cmd.' + k + '.sub'), ic, c: 'var(--accent)', keys: norm(t('cmd.' + k) + ' ' + t('cmd.' + k + '.keys')), run });
+  entries = wins.map(w => ({
+    title: w.getAttribute('aria-label'), sub: titleOf(w), ic: w.dataset.ic, c: w.style.getPropertyValue('--c'),
+    keys: norm(w.getAttribute('aria-label') + ' ' + titleOf(w) + ' ' + ((lang === 'tr' ? w.dataset.keys : t('keys.' + w.id)) || '')),
+    run: () => open(w.id, { focus: true })
+  })).concat([
+    cmd('theme', 'i-sun', toggleTheme),
+    cmd('paint', 'i-roller', () => setPaint(true)),
+    cmd('home', 'i-home', home),
+    cmd('lang', 'i-globe', () => setLang(lang === 'tr' ? 'en' : 'tr', true))
+  ]);
+}
+buildEntries();
 let qRes = [], qIdx = 0;
 function qRender() {
   const words = norm(q.value.trim()).split(/\s+/).filter(Boolean);
@@ -249,7 +296,7 @@ function qRender() {
   qIdx = 0;
   qList.innerHTML = '';
   if (!qRes.length) {
-    const li = document.createElement('li'); li.className = 'empty'; li.textContent = 'Sonuç yok. Başka bir şey dene.';
+    const li = document.createElement('li'); li.className = 'empty'; li.textContent = t('q.none');
     qList.appendChild(li);
   }
   qRes.forEach((en, i) => {
@@ -288,13 +335,17 @@ const bell = $('#bell'), notes = $('#notes'), notesList = $('#notes-list'), dot 
 const logs = $$('#w-devlog p[data-d]');
 const latest = logs.length ? logs[0].dataset.d : '';
 const seenNote = store.get('gz-seen-note');
-logs.slice(0, 4).forEach((p, i) => {
-  const li = document.createElement('li');
-  li.innerHTML = '<b></b><span></span>';
-  $('b', li).textContent = p.dataset.d; $('span', li).textContent = $('span', p).textContent;
-  if (i === 0 && seenNote !== latest) li.className = 'new';
-  notesList.appendChild(li);
-});
+function buildNotes() {
+  notesList.innerHTML = '';
+  logs.slice(0, 4).forEach((p, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = '<b></b><span></span>';
+    $('b', li).textContent = $('b', p).textContent; $('span', li).textContent = $('span', p).textContent;
+    if (i === 0 && seenNote !== latest) li.className = 'new';
+    notesList.appendChild(li);
+  });
+}
+buildNotes();
 dot.hidden = !latest || seenNote === latest;
 function closePops() { notes.hidden = true; bell.setAttribute('aria-expanded', 'false'); }
 bell.addEventListener('click', e => {
@@ -316,16 +367,7 @@ const FACES = {
   sleepy:['.........', '.......##', '.###...#.', '......##.', '.........', '..#####..', '.........']
 };
 const ORDER = ['smile', 'wink', 'happy', 'wow', 'love'];
-const QUIPS = [
-  'Selam! Ben Moni. Bana tıklayabilirsin.',
-  'Duvarı boyamayı denedin mi? Rulo üst çubukta.',
-  'Önce naylon, sonra boya. Usta böyle diyor.',
-  'Klonlarım bile benden çalışkan.',
-  'Bu ekran 4:3, gönlüm 16:9.',
-  'Kaydetmeyi unutma. Ben unuttum.',
-  'Arama için / tuşuna bas, gerisini ben hallederim.',
-  'İlk kat kurumadan ikinciyi atma!'
-];
+const quips = () => t('quips'); // i18n.js
 const face = $('#face'), bubble = $('#bubble'), mon = $('#mon');
 let faceName = 'smile', faceI = 0, quipI = 0, bubbleT = 0;
 function draw(name) {
@@ -337,10 +379,10 @@ function say(text, ms = 3600) {
   clearTimeout(bubbleT); bubbleT = setTimeout(() => bubble.classList.remove('show'), ms);
 }
 setFace('smile');
-function greet() { setTimeout(() => say(QUIPS[0], 4200), 500); }
+function greet() { setTimeout(() => say(quips()[0], 4200), 500); }
 mon.addEventListener('click', () => {
   faceI = (faceI + 1) % ORDER.length; setFace(ORDER[faceI]);
-  quipI = quipI % (QUIPS.length - 1) + 1; say(QUIPS[quipI]);
+  const qs = quips(); quipI = quipI % (qs.length - 1) + 1; say(qs[quipI]);
 });
 (function blinkLoop() {
   setTimeout(() => {
@@ -372,12 +414,12 @@ function setPaint(on) {
   painting = on;
   document.body.classList.toggle('painting', on);
   pbar.hidden = !on; roller.setAttribute('aria-pressed', String(on));
-  if (on) { fitCanvas(); setFace('happy'); say('Rulo hazır! Boş duvarda sürükle.'); $('.sw.on', pbar).focus(); }
+  if (on) { fitCanvas(); setFace('happy'); say(t('paint.on')); $('.sw.on', pbar).focus(); }
   else { setFace(ORDER[faceI]); }
 }
 roller.addEventListener('click', () => setPaint(!painting));
 $('#pb-done').addEventListener('click', () => { setPaint(false); roller.focus(); });
-$('#pb-clear').addEventListener('click', () => { ctx.clearRect(0, 0, cv.width, cv.height); say('Tertemiz. Yeni bir kat?', 2200); });
+$('#pb-clear').addEventListener('click', () => { ctx.clearRect(0, 0, cv.width, cv.height); say(t('paint.clear'), 2200); });
 $$('.sw', pbar).forEach(s => s.addEventListener('click', () => {
   color = s.dataset.c;
   $$('.sw', pbar).forEach(o => { o.classList.toggle('on', o === s); o.setAttribute('aria-pressed', String(o === s)); });
@@ -413,6 +455,26 @@ document.addEventListener('keydown', e => {
   if (painting) { setPaint(false); return; }
   const a = $('.win.active:not([hidden])'); if (a) close(a);
 });
+
+/* ---------- Dil değiştirme: anında, sayfa yenilemeden ---------- */
+function setLang(l, save) {
+  if (l !== 'tr' && l !== 'en') return;
+  if (save) {
+    store.set('gz-lang', l);
+    // ?lang= varsa adresi de güncelle (hash korunur)
+    if (/[?&]lang=/.test(location.search) && history.replaceState) {
+      const u = new URL(location.href); u.searchParams.set('lang', l);
+      history.replaceState(null, '', u.pathname + u.search + u.hash);
+    }
+  }
+  if (l === lang) return;
+  lang = l;
+  applyLangStatic();
+  applyTheme(document.documentElement.dataset.theme === 'day' ? 'day' : 'night');
+  buildEntries(); buildNotes(); sync();
+  clearTimeout(bubbleT); bubble.classList.remove('show'); bubble.textContent = '';
+}
+$$('.lang [data-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
 
 /* ---------- Adres çubuğundaki #pencere ile aç (paylaşılabilir bağlantı) ---------- */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
