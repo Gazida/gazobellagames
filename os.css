@@ -344,3 +344,5 @@ body.painting #paint{pointer-events:auto;cursor:crosshair}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+.clip{display:block;width:100%;height:auto;aspect-ratio:16/9;margin-top:12px;border-radius:14px;border:1px solid var(--line);background:#000}

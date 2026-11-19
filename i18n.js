@@ -80,17 +80,18 @@ en: {
   'trash': 'Trash',
 
   /* Painting Crew Simulator */
-  'pcs.hero': 'The game’s main menu: a painter rolling paint onto a wall, next to the menu options',
+  'pcs.hero': 'A furnished living room freshly painted terracotta, with paint buckets and brushes on the floor',
   'pcs.desc': 'You’re the boss of your own little painting and decorating shop. Grab a job off the notice board, get your supplies ready and do the apartment properly: cover everything in plastic, scrape, skim the plaster, sand it smooth, cut in the edges with brush and tape, then roll on two coats. Clean work, solid pay. The more you earn, the better your tools, the fancier your custom mixes at the tinting machine and the bigger the jobs.',
   'tag.sim': 'Simulation',
   'tag.fps': 'First-person',
   'tag.ea': 'Steam Early Access · coming soon',
   'pcs.cta': 'Steam page coming soon',
-  'pcs.s1': 'Dust flying while smoothing a pink plaster patch on the wall',
-  'pcs.s2': 'A living room with freshly painted turquoise walls, a ladder and paint buckets',
-  'pcs.s3': 'The paint shop counter: color fan decks, glasses of tea and the shopkeeper behind it',
-  'pcs.s4': 'The Mahmut Usta Boya paint shop seen from the street in daylight',
-  'pcs.s5': 'In-game view of rolling orange paint onto the wall of a run-down room',
+  'pcs.video': 'Painting Crew Simulator gameplay video',
+  'pcs.s1': 'First-person view: roller in hand, a grey wall half painted terracotta, an armchair covered in plastic',
+  'pcs.s2': 'A room prepared for painting: furniture pulled to the middle and covered with plastic sheets',
+  'pcs.s3': 'Job handover: a slider comparing the room before and after',
+  'pcs.s4': 'Inside the street store: full shelves and customers shopping',
+  'pcs.s5': 'The neighbourhood shop seen from the street: the İyi Boya sign and a red awning',
 
   /* Clone Runner */
   'cr.hero': 'Clone Runner main menu',
