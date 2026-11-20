@@ -108,6 +108,8 @@ en: {
   'cr.privacyHref': 'privacy-policy.html',
 
   /* devlog (dates shown as month + day; data-d stays DD.MM) */
+  'log.d7': 'Nov 20', 'log.7': 'Painting Crew Simulator: three shop sizes, an illustrated wholesaler and ready-mixed colors.',
+  'log.d6': 'Nov 19', 'log.6': 'Painting Crew Simulator: job handover with a before/after comparison and the customer’s reaction.',
   'log.d1': 'Nov 14', 'log.1': 'Painting Crew Simulator: trailer edit is a wrap.',
   'log.d2': 'Nov 8', 'log.2': 'Painting Crew Simulator: the master painter’s shop and the city map.',
   'log.d3': 'Oct 25', 'log.3': 'Clone Runner: Floor 2, forest levels and platforms.',
